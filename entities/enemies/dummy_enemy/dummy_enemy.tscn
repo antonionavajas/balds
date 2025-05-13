@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn3ahsnchx5kn"]
+
+[ext_resource type="Script" uid="uid://iikcqmttdp3a" path="res://entities/enemies/dummy_enemy/scripts/dummy_enemy.gd" id="1_3q2je"]
+[ext_resource type="Shader" uid="uid://ddj5fqf51ybn8" path="res://shaders/enemy_dummy.gdshader" id="2_pamq6"]
+[ext_resource type="Texture2D" uid="uid://cccodio87a702" path="res://icon.svg" id="3_hog1r"]
+[ext_resource type="PackedScene" uid="uid://gvljycg6f10f" path="res://ui/life_bar/life_bar.tscn" id="4_pamq6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fjxf"]
+shader = ExtResource("2_pamq6")
+shader_parameter/tint_color = Vector3(1, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8vgc"]
+size = Vector2(134, 136)
+
+[node name="dummy_enemy" type="CharacterBody2D"]
+script = ExtResource("1_3q2je")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2fjxf")
+texture = ExtResource("3_hog1r")
+
+[node name="damage_area" type="Area2D" parent="." groups=["enemy_colliders"]]
+collision_layer = 6
+collision_mask = 6
+
+[node name="get_damage_shape" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("RectangleShape2D_j8vgc")
+
+[node name="life_bar" parent="." instance=ExtResource("4_pamq6")]

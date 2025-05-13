@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn70j36wfvobf"]
+
+[ext_resource type="Script" uid="uid://qiwd44ls06al" path="res://scripts/scenes/dummy_scene.gd" id="1_dptie"]
+[ext_resource type="PackedScene" uid="uid://g6wxbl0m7cv6" path="res://entities/player/player.tscn" id="2_v554v"]
+[ext_resource type="PackedScene" uid="uid://dn3ahsnchx5kn" path="res://entities/enemies/dummy_enemy/dummy_enemy.tscn" id="3_v554v"]
+[ext_resource type="Script" uid="uid://ddfip7dr0agy5" path="res://ui/dummy_restart_button/dummy_restart_button.gd" id="4_dptie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wngnp"]
+size = Vector2(448, 32)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_dptie")
+
+[node name="Wall" type="Polygon2D" parent="."]
+scale = Vector2(5.58259, 1)
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
+position = Vector2(224, 16)
+shape = SubResource("RectangleShape2D_wngnp")
+
+[node name="Wall5" type="Polygon2D" parent="."]
+position = Vector2(-5, 1347)
+scale = Vector2(5.58259, 1)
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall5"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall5/StaticBody2D"]
+position = Vector2(224, 16)
+shape = SubResource("RectangleShape2D_wngnp")
+
+[node name="Wall3" type="Polygon2D" parent="."]
+position = Vector2(0.00274205, 1371.47)
+rotation = -1.5708
+scale = Vector2(2.98865, 1)
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3/StaticBody2D"]
+position = Vector2(224, 16)
+shape = SubResource("RectangleShape2D_wngnp")
+
+[node name="Wall4" type="Polygon2D" parent="."]
+position = Vector2(2471, 1371.47)
+rotation = -1.5708
+scale = Vector2(2.98865, 1)
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4/StaticBody2D"]
+position = Vector2(224, 16)
+shape = SubResource("RectangleShape2D_wngnp")
+
+[node name="Player" parent="." instance=ExtResource("2_v554v")]
+position = Vector2(352, 332)
+
+[node name="dummy_weapon" parent="Player/weapon_container" index="0"]
+bullet_speed = 2600
+bullets_per_shot = 6
+max_bullets = 100
+actual_bullets = 100
+bullets_spread = 80
+bullet_life_time = 3.0
+rate_of_fire = 0.8
+
+[node name="dummy_enemy" parent="." instance=ExtResource("3_v554v")]
+position = Vector2(937, 368)
+
+[node name="dummy_enemy2" parent="." instance=ExtResource("3_v554v")]
+position = Vector2(777, 142)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(833, 527)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 2384.0
+offset_top = 69.0
+offset_right = 2449.0
+offset_bottom = 100.0
+text = "Restart"
+script = ExtResource("4_dptie")
+
+[editable path="Player"]

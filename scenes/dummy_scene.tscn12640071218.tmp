@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn70j36wfvobf"]
+
+[ext_resource type="Script" uid="uid://qiwd44ls06al" path="res://scripts/scenes/dummy_scene.gd" id="1_dptie"]
+[ext_resource type="PackedScene" uid="uid://g6wxbl0m7cv6" path="res://entities/player/player.tscn" id="2_v554v"]
+[ext_resource type="PackedScene" uid="uid://3utep7iikpyx" path="res://entities/bullets/dummy_bullet.tscn" id="4_e3jki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wngnp"]
+size = Vector2(448, 32)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_dptie")
+
+[node name="Wall" type="Polygon2D" parent="."]
+scale = Vector2(2.57143, 1)
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
+position = Vector2(224, 16)
+shape = SubResource("RectangleShape2D_wngnp")
+
+[node name="Wall2" type="Polygon2D" parent="."]
+position = Vector2(0, 614)
+scale = Vector2(2.57143, 1)
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2/StaticBody2D"]
+position = Vector2(224, 16)
+shape = SubResource("RectangleShape2D_wngnp")
+
+[node name="Wall3" type="Polygon2D" parent="."]
+position = Vector2(0, 614)
+rotation = -1.5708
+scale = Vector2(1.29786, 1)
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3/StaticBody2D"]
+position = Vector2(224, 16)
+shape = SubResource("RectangleShape2D_wngnp")
+
+[node name="DummyBullet" parent="." instance=ExtResource("4_e3jki")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_v554v")]
+position = Vector2(352, 332)
+
+[editable path="Player"]
