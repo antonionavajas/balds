@@ -4,4 +4,3 @@
 
 [node name="LifeSystem" type="Node"]
 script = ExtResource("1_vhgsx")
-target_group = "enemy_colliders"

@@ -15,13 +15,12 @@ var received_damage : int = 0
 @export var damage_timer : float = 0.0
 
 @export_category('Collisions')
-@export var target_group: String
 @export var damage_area : Area2D:
 	set(value):
 		damage_area = value
 		notify_property_list_changed()
 	get:
-		return damage_area		
+		return damage_area
 
 @export_flags_2d_physics var collision_layer: int
 @export_flags_2d_physics var collision_mask: int
@@ -29,11 +28,8 @@ var received_damage : int = 0
 signal dying()
 
 func _ready() -> void:
-	damage_area.add_to_group(target_group)
 	damage_area.connect('area_entered', get_damage_from)
 	damage_area.connect('area_exited', stop_getting_damage)
-	damage_area.collision_layer = collision_layer
-	damage_area.collision_mask = collision_mask
 
 func _physics_process(delta):
 	if is_getting_damage:
@@ -54,13 +50,13 @@ func check_alive() -> void:
 		emit_signal("dying")
 
 func get_damage_from(area: Area2D):
-	if target_group in area.get_groups():
-		var item := area.get_parent()
+	if area.collision_layer & collision_mask:
+		var entity := area.owner
 		is_getting_damage = true
-		received_damage = item.damage
+		received_damage = entity.damage
 
 func stop_getting_damage(area: Area2D):
-	if target_group in area.get_groups():
+	if area.collision_layer & collision_mask:
 		is_getting_damage = false
 		
 func _get_configuration_warnings() -> PackedStringArray:

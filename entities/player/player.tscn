@@ -25,17 +25,20 @@ scale = Vector2(1, 1)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sglur")
 
+[node name="damage_area" type="Area2D" parent="Sprite2D"]
+collision_mask = 4
+
+[node name="get_damage_shape" type="CollisionShape2D" parent="Sprite2D/damage_area"]
+shape = SubResource("RectangleShape2D_fkugw")
+
 [node name="life_bar" parent="." node_paths=PackedStringArray("life_system") instance=ExtResource("4_bls4j")]
 visible = false
-value = 100.0
+max_value = 500.0
+value = 500.0
 life_system = NodePath("../LifeSystem")
 
 [node name="LifeSystem" parent="." node_paths=PackedStringArray("damage_area") instance=ExtResource("5_fkugw")]
-damage_area = NodePath("../damage_area")
-
-[node name="damage_area" type="Area2D" parent="." groups=["enemy_colliders"]]
-collision_layer = 0
-collision_mask = 0
-
-[node name="get_damage_shape" type="CollisionShape2D" parent="damage_area"]
-shape = SubResource("RectangleShape2D_fkugw")
+enabled_dot = true
+damage_area = NodePath("../Sprite2D/damage_area")
+collision_layer = 1
+collision_mask = 4

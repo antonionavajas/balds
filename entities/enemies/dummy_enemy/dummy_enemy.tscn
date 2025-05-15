@@ -21,23 +21,23 @@ life_system = NodePath("LifeSystem")
 material = SubResource("ShaderMaterial_2fjxf")
 texture = ExtResource("3_hog1r")
 
+[node name="damage_area" type="Area2D" parent="Sprite2D" groups=["enemy_colliders"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="get_damage_shape" type="CollisionShape2D" parent="Sprite2D/damage_area"]
+shape = SubResource("RectangleShape2D_hog1r")
+
 [node name="life_bar" parent="." node_paths=PackedStringArray("life_system") instance=ExtResource("4_pamq6")]
 visible = false
+max_value = 50.0
 value = 50.0
 life_system = NodePath("../LifeSystem")
 
-[node name="LifeSystem" parent="." node_paths=PackedStringArray("damage_area") instance=ExtResource("5_hog1r")]
+[node name="LifeSystem" parent="." node_paths=PackedStringArray("damage_area") groups=["enemy_colliders"] instance=ExtResource("5_hog1r")]
 life = 50
 max_life = 50
 damage_interval = 0.01
-target_group = "bullet_colliders"
-damage_area = NodePath("../damage_area")
-collision_layer = 2
+damage_area = NodePath("../Sprite2D/damage_area")
+collision_layer = 4
 collision_mask = 2
-
-[node name="damage_area" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="get_damage_shape" type="CollisionShape2D" parent="damage_area"]
-shape = SubResource("RectangleShape2D_hog1r")
