@@ -1,7 +1,7 @@
 extends Button
 
-func _process(delta: float) -> void:
+func _ready_ready() -> void:
 	self.connect('pressed', restart)
 	
 func restart(): 
-	get_tree().reload_current_scene()
+	GLOBAL.reload_current_scene()

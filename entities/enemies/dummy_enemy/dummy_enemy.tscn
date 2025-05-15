@@ -1,29 +1,43 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn3ahsnchx5kn"]
+[gd_scene load_steps=8 format=3 uid="uid://dn3ahsnchx5kn"]
 
 [ext_resource type="Script" uid="uid://iikcqmttdp3a" path="res://entities/enemies/dummy_enemy/scripts/dummy_enemy.gd" id="1_3q2je"]
 [ext_resource type="Shader" uid="uid://ddj5fqf51ybn8" path="res://shaders/enemy_dummy.gdshader" id="2_pamq6"]
 [ext_resource type="Texture2D" uid="uid://cccodio87a702" path="res://icon.svg" id="3_hog1r"]
 [ext_resource type="PackedScene" uid="uid://gvljycg6f10f" path="res://ui/life_bar/life_bar.tscn" id="4_pamq6"]
+[ext_resource type="PackedScene" uid="uid://b1j5otiwj5ick" path="res://resources/systems/life_system.tscn" id="5_hog1r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fjxf"]
 shader = ExtResource("2_pamq6")
 shader_parameter/tint_color = Vector3(1, 0, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8vgc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hog1r"]
 size = Vector2(134, 136)
 
-[node name="dummy_enemy" type="CharacterBody2D"]
+[node name="dummy_enemy" type="CharacterBody2D" node_paths=PackedStringArray("life_system")]
 script = ExtResource("1_3q2je")
+life_system = NodePath("LifeSystem")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2fjxf")
 texture = ExtResource("3_hog1r")
 
-[node name="damage_area" type="Area2D" parent="." groups=["enemy_colliders"]]
-collision_layer = 6
-collision_mask = 6
+[node name="life_bar" parent="." node_paths=PackedStringArray("life_system") instance=ExtResource("4_pamq6")]
+visible = false
+value = 50.0
+life_system = NodePath("../LifeSystem")
+
+[node name="LifeSystem" parent="." node_paths=PackedStringArray("damage_area") instance=ExtResource("5_hog1r")]
+life = 50
+max_life = 50
+damage_interval = 0.01
+target_group = "bullet_colliders"
+damage_area = NodePath("../damage_area")
+collision_layer = 2
+collision_mask = 2
+
+[node name="damage_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="get_damage_shape" type="CollisionShape2D" parent="damage_area"]
-shape = SubResource("RectangleShape2D_j8vgc")
-
-[node name="life_bar" parent="." instance=ExtResource("4_pamq6")]
+shape = SubResource("RectangleShape2D_hog1r")

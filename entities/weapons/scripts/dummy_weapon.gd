@@ -14,7 +14,7 @@ var is_in_cooldown : bool = false
 @export var bullet_life_time : float = 3
 @export var rate_of_fire : float = 0.8
 
-@onready var player : Player = GLOBAL.player
+@onready var player : PlayerController = get_parent().get_parent()
 @onready var progress_bar : ProgressBar = $ProgressBar
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
