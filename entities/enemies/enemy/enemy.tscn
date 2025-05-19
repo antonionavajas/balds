@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn3ahsnchx5kn"]
+[gd_scene load_steps=10 format=3 uid="uid://dn3ahsnchx5kn"]
 
-[ext_resource type="Script" uid="uid://iikcqmttdp3a" path="res://entities/enemies/dummy_enemy/scripts/dummy_enemy.gd" id="1_3q2je"]
+[ext_resource type="Script" uid="uid://iikcqmttdp3a" path="res://entities/enemies/enemy/scripts/enemy.gd" id="1_3q2je"]
 [ext_resource type="Shader" uid="uid://ddj5fqf51ybn8" path="res://shaders/enemy_dummy.gdshader" id="2_pamq6"]
 [ext_resource type="Texture2D" uid="uid://cccodio87a702" path="res://icon.svg" id="3_hog1r"]
 [ext_resource type="PackedScene" uid="uid://gvljycg6f10f" path="res://ui/life_bar/life_bar.tscn" id="4_pamq6"]
-[ext_resource type="PackedScene" uid="uid://b1j5otiwj5ick" path="res://resources/systems/life_system.tscn" id="5_hog1r"]
+[ext_resource type="PackedScene" uid="uid://b1j5otiwj5ick" path="res://core/systems/life_system.tscn" id="5_hog1r"]
+[ext_resource type="PackedScene" uid="uid://b8yeahlx7rdsq" path="res://entities/weapons/weapon.tscn" id="6_bgivi"]
+[ext_resource type="PackedScene" uid="uid://b23ul53k7vpxe" path="res://core/enemy_behavior/enemy_behavior.tscn" id="7_w70em"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fjxf"]
 shader = ExtResource("2_pamq6")
@@ -29,15 +31,24 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_hog1r")
 
 [node name="life_bar" parent="." node_paths=PackedStringArray("life_system") instance=ExtResource("4_pamq6")]
+unique_name_in_owner = true
 visible = false
 max_value = 50.0
 value = 50.0
 life_system = NodePath("../LifeSystem")
 
 [node name="LifeSystem" parent="." node_paths=PackedStringArray("damage_area") groups=["enemy_colliders"] instance=ExtResource("5_hog1r")]
+unique_name_in_owner = true
 life = 50
 max_life = 50
 damage_interval = 0.01
 damage_area = NodePath("../Sprite2D/damage_area")
 collision_layer = 4
 collision_mask = 2
+
+[node name="Weapon" parent="." node_paths=PackedStringArray("character") instance=ExtResource("6_bgivi")]
+unique_name_in_owner = true
+character = NodePath("..")
+
+[node name="EnemyBehavior" parent="." instance=ExtResource("7_w70em")]
+unique_name_in_owner = true

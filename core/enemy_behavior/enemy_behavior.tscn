@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://b23ul53k7vpxe"]
+
+[ext_resource type="Script" uid="uid://d16d21erchtjc" path="res://core/enemy_behavior/scripts/enemy_behavior.gd" id="1_7tk4s"]
+
+[node name="EnemyBehavior" type="Node2D"]
+script = ExtResource("1_7tk4s")
+
+[node name="sight_raycast" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 150)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="aggro_raycast" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 150)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="shot_raycast" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(0, 150)
+collide_with_areas = true
+collide_with_bodies = false

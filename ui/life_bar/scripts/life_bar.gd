@@ -18,6 +18,8 @@ func _physics_process(delta: float) -> void:
 	update_life()
 
 func update_life() -> void:
+	if life_system == null: 
+		return
 	max_value = life_system.max_life
 	value = float(life_system.life)
 	label.text = str(life_system.life)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qiwd44ls06al" path="res://scripts/scenes/dummy_scene.gd" id="1_dptie"]
 [ext_resource type="PackedScene" uid="uid://g6wxbl0m7cv6" path="res://entities/player/player.tscn" id="2_v554v"]
-[ext_resource type="PackedScene" uid="uid://dn3ahsnchx5kn" path="res://entities/enemies/dummy_enemy/dummy_enemy.tscn" id="3_v554v"]
+[ext_resource type="PackedScene" uid="uid://dn3ahsnchx5kn" path="res://entities/enemies/enemy/enemy.tscn" id="3_v554v"]
 [ext_resource type="Script" uid="uid://ddfip7dr0agy5" path="res://ui/dummy_restart_button/dummy_restart_button.gd" id="4_dptie"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_2fjxf"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_2fjxf"]
@@ -22,14 +22,15 @@ metadata/_custom_type_script = "uid://8umksf8e80fw"
 script = ExtResource("1_dptie")
 
 [node name="dummy_enemy" parent="." instance=ExtResource("3_v554v")]
+position = Vector2(2294, 1158)
 
 [node name="Wall" type="Polygon2D" parent="."]
 scale = Vector2(5.58259, 1)
 polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2147483663
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
 position = Vector2(224, 16)
@@ -41,8 +42,8 @@ scale = Vector2(5.58259, 1)
 polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall5"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2147483663
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall5/StaticBody2D"]
 position = Vector2(224, 16)
@@ -55,8 +56,8 @@ scale = Vector2(2.98865, 1)
 polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall3"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2147483663
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3/StaticBody2D"]
 position = Vector2(224, 16)
@@ -69,8 +70,8 @@ scale = Vector2(2.98865, 1)
 polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Wall4"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2147483663
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4/StaticBody2D"]
 position = Vector2(224, 16)
@@ -85,19 +86,22 @@ text = "Restart"
 script = ExtResource("4_dptie")
 metadata/_edit_use_anchors_ = true
 
-[node name="PhantomCamera2D" type="Node2D" parent="."]
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(308.2, 295.2)
+position = Vector2(608.2, 1060.2)
 script = ExtResource("5_2fjxf")
 priority = 1
 follow_mode = 2
+follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_cyqm4")
 follow_offset = Vector2(0.2, 0.2)
 follow_damping_value = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(308.2, 295.2)
+physics_interpolation_mode = 1
+position = Vector2(608.2, 1060.2)
+process_callback = 0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -106,4 +110,4 @@ script = ExtResource("6_2fjxf")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Player" parent="." instance=ExtResource("2_v554v")]
-position = Vector2(308, 295)
+position = Vector2(608, 1060)

@@ -11,10 +11,15 @@ offset = Vector2(288, -225.6)
 polygon = PackedVector2Array(-312, 235.2, -312, 216, -297.6, 201.6, -278.4, 201.6, -264, 216, -264, 235.2, -278.4, 249.6, -297.6, 249.6)
 uv = PackedVector2Array(-312, 232, -312, 216, -296, 200, -280, 200, -264, 216, -264, 232, -280, 248, -296, 248)
 script = ExtResource("1_3qehv")
+collision_layer = null
+collision_mask = null
+bounce = null
+speed = null
+damage = null
+life_time = null
 
 [node name="DamageCollider" type="Area2D" parent="." groups=["bullet_colliders"]]
 visible = false
-collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageCollider"]

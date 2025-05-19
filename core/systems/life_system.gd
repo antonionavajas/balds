@@ -28,11 +28,11 @@ var received_damage : int = 0
 signal dying()
 
 func _ready() -> void:
-	damage_area.connect('area_entered', get_damage_from)
-	damage_area.connect('area_exited', stop_getting_damage)
+	on_collide()
 
 func _physics_process(delta):
 	if is_getting_damage:
+#		TODO this is a bad concept. Rework it
 		if enabled_dot:
 			damage_timer -= delta
 			if damage_timer <= 0.0:
@@ -46,8 +46,7 @@ func get_damage(damage: int) -> void:
 	check_alive()
 	
 func check_alive() -> void:
-	if life <= 0:
-		emit_signal("dying")
+	if life <= 0: emit_signal("dying")
 
 func get_damage_from(area: Area2D):
 	if area.collision_layer & collision_mask:
@@ -56,11 +55,14 @@ func get_damage_from(area: Area2D):
 		received_damage = entity.damage
 
 func stop_getting_damage(area: Area2D):
-	if area.collision_layer & collision_mask:
-		is_getting_damage = false
-		
+	if area.collision_layer & collision_mask: is_getting_damage = false
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings = []
 	if damage_area == null:
 		warnings.append("Damage Area is not assigned! This Damage Area will not function properly.")
 	return warnings
+
+func on_collide():
+	damage_area.connect('area_entered', get_damage_from)
+	damage_area.connect('area_exited', stop_getting_damage)

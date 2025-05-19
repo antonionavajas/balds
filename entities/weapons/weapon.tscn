@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8yeahlx7rdsq"]
+
+[ext_resource type="Script" uid="uid://vnk8k70ehj0r" path="res://entities/weapons/scripts/weapon.gd" id="1_l8a67"]
+[ext_resource type="Texture2D" uid="uid://dwcuhp3gxb3dh" path="res://assets/dummy/dummy_weapon.png" id="2_2n5qc"]
+[ext_resource type="Script" uid="uid://dxeth5oabdipq" path="res://entities/weapons/scripts/reloading_bar.gd" id="3_8ul80"]
+[ext_resource type="AudioStream" uid="uid://c222mmibhx6do" path="res://assets/sounds/weapons/shotgun/shotgun-firing-3-14483.mp3" id="4_di2bd"]
+
+[node name="weapon_container" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_l8a67")
+
+[node name="dummy_weapon" type="Node2D" parent="."]
+position = Vector2(36, 0)
+scale = Vector2(7, 7)
+
+[node name="cannon" type="Node2D" parent="dummy_weapon"]
+unique_name_in_owner = true
+position = Vector2(4, -0.571429)
+
+[node name="weapon_skin" type="Sprite2D" parent="dummy_weapon"]
+unique_name_in_owner = true
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("2_2n5qc")
+region_rect = Rect2(0, 0, 1, 0)
+
+[node name="reload_bar" type="ProgressBar" parent="dummy_weapon"]
+unique_name_in_owner = true
+offset_left = -4.57143
+offset_top = -6.42857
+offset_right = 14.4286
+offset_bottom = -2.42857
+scale = Vector2(0.5, 0.5)
+show_percentage = false
+script = ExtResource("3_8ul80")
+metadata/_edit_use_anchors_ = true
+
+[node name="shoot_sound" type="AudioStreamPlayer" parent="dummy_weapon"]
+unique_name_in_owner = true
+stream = ExtResource("4_di2bd")
