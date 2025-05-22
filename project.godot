@@ -33,7 +33,7 @@ window/size/viewport_height=768
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/soupik/plugin.cfg")
 
 [global_group]
 

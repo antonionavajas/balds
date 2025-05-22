@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dce6nhbnt2nyf"]
+
+[ext_resource type="Script" uid="uid://4dbfqik3vb8r" path="res://core/gizmos/skeleton_handlers/scripts/skeleton_handler.gd" id="1_rqvfb"]
+
+[node name="SkeletonHandler" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_rqvfb")
+
+[node name="top_polygon" type="Polygon2D" parent="."]
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-6.10352e-05, -7.99998, -8.00001, -32, 8.00001, -32)
+uv = PackedVector2Array(-88.0001, -40, -112, -104, -64, -104)
+
+[node name="right_polygon" type="Polygon2D" parent="."]
+rotation = 1.57079
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-6.10352e-05, -7.99998, -8.00001, -32, 8.00001, -32)
+uv = PackedVector2Array(-88.0001, -40, -112, -104, -64, -104)
+
+[node name="bottom_polygon" type="Polygon2D" parent="."]
+rotation = 3.14159
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-6.10352e-05, -7.99998, -8.00001, -32, 8.00001, -32)
+uv = PackedVector2Array(-88.0001, -40, -112, -104, -64, -104)
+
+[node name="left_polygon" type="Polygon2D" parent="."]
+rotation = -1.57079
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-6.10352e-05, -7.99998, -8.00001, -32, 8.00001, -32)
+uv = PackedVector2Array(-88.0001, -40, -112, -104, -64, -104)

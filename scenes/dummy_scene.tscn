@@ -24,6 +24,9 @@ script = ExtResource("1_dptie")
 [node name="dummy_enemy" parent="." instance=ExtResource("3_v554v")]
 position = Vector2(2294, 1158)
 
+[node name="dummy_enemy2" parent="." instance=ExtResource("3_v554v")]
+position = Vector2(2240, 697)
+
 [node name="Wall" type="Polygon2D" parent="."]
 scale = Vector2(5.58259, 1)
 polygon = PackedVector2Array(0, 0, 448, 0, 448, 32, 0, 32)

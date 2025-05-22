@@ -64,5 +64,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func on_collide():
-	damage_area.connect('area_entered', get_damage_from)
-	damage_area.connect('area_exited', stop_getting_damage)
+	if damage_area:
+		damage_area.connect('area_entered', get_damage_from)
+		damage_area.connect('area_exited', stop_getting_damage)
